@@ -3,3 +3,5 @@ venv
 *.xls
 *.xlsx
 __pycache__
+*.csv#
+*.xls#

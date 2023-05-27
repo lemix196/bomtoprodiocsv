@@ -36,8 +36,10 @@ read_file.to_csv(r"bom_temp.csv", index=None, header=True)
 # convert .csv to pandas DataFrame
 bom_csv = pd.read_csv("bom_temp.csv", skiprows=12)
 
+# init of empty DataFrame object to be filled with lines to export to Prodio
 prodio_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
 
+# iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
 for i in range(len(bom_csv)):
     line = bom_csv.loc[i]
     prodio_line = pd.Series(index=PRODIO_IMPORT_HEADERS)
@@ -50,4 +52,4 @@ for i in range(len(bom_csv)):
     prodio_line["Uwagi niewidoczne dla produkcji"] = line["Gatunek"] + "; PILNE"
     prodio_df.loc[len(prodio_df)] = prodio_line
 
-print(prodio_df)
+prodio_df.to_csv('generated_prodio_import.csv', sep=";")
