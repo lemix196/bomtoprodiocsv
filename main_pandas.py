@@ -1,4 +1,5 @@
 import pandas as pd
+from validators import validate_product_name
 
 PRODIO_IMPORT_HEADERS = ['Klient',\
                          'Oczekiwany termin realizacji',\
@@ -42,11 +43,12 @@ prodio_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
 # iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
 for i in range(len(bom_csv)):
     line = bom_csv.loc[i]
+    product_name = str(line["Nazwa"])
     prodio_line = pd.Series(index=PRODIO_IMPORT_HEADERS)
     prodio_line["Klient"] = "NATS012"
     prodio_line["Oczekiwany termin realizacji"] = "2023.05.30"
     prodio_line["Zewn. nr zamówienia"] = "2023.05.27_GL_1"
-    prodio_line["Produkt"] = line["Nazwa"]
+    prodio_line["Produkt"] = product_name
     prodio_line["Sztuk"] = line["Ilość"]
     prodio_line["Uwagi dla wszystkich"] = "A1"
     prodio_line["Uwagi niewidoczne dla produkcji"] = line["Gatunek"] + "; PILNE"
