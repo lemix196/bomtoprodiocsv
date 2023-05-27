@@ -2,3 +2,4 @@ venv
 *.csv
 *.xls
 *.xlsx
+__pycache__
