@@ -22,5 +22,5 @@ read_file.to_csv(r"bom_temp.csv", index=None, header=True)
 # convert .csv to pandas DataFrame
 bom_csv = pd.read_csv("bom_temp.csv", skiprows=12)
 
-
-print(bom_csv.iloc[0])
+prodio_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
+print(prodio_df)
