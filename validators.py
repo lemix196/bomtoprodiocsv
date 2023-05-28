@@ -1,15 +1,5 @@
 import re
 
-PRODUCT_TO_ORDER = ("23_002A_T_20_0_2_009",
-                    "NC11LV",
-                    "84")
-PRODUCT_TO_PREPARE = ("18_064A_P_20_0_1_003",
-                      "C45",
-                      "Φ50"
-                      )
-
-
-
 class ProductValidator:
     def __init__(self, product_name: str, material: str, x_dimension: str) -> None:
         self.product_name = product_name

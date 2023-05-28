@@ -13,22 +13,9 @@ PRODIO_IMPORT_HEADERS = ['Klient',\
                          'Atrybut 2 (opcjonalnie)',\
                          'Atrybut 3 (opcjonalnie)']
 
-PRODIO_EXAMPLE_ROW = ['NABR008',\
-                      '2023.05.30',
-                      '',
-                      '2023.05.27_GL_1',
-                      '22_018A_T_10_1_023',
-                      '3',
-                      'A3',
-                      'HOLDAX; PILNE',
-                      '',
-                      '',
-                      ''
-]
-
 
 # path to BOM.xls file
-xls_bom = "/home/grzegorz/Dev/bomtocsv/NABR009_OP20_BOM.xls"
+xls_bom = input("Podaj pelna nazwe pliku arkusza BOM (wraz z rozszerzeniem .xls lub .xlsx):\n")
 
 # convert .xls file to .csv
 read_file = pd.read_excel(xls_bom, sheet_name="Całość")
