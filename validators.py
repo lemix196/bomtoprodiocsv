@@ -1,33 +1,54 @@
 import re
 
-VALID_PRODUCT_NAME = "23_002A_T_20_0_2_009"
-INVALID_PRODUCT_NAME = "M50-100-A-YW"
+PRODUCT_TO_ORDER = ("23_002A_T_20_0_2_009",
+                    "NC11LV",
+                    "84")
+PRODUCT_TO_PREPARE = ("18_064A_P_20_0_1_003",
+                      "C45",
+                      "Φ50"
+                      )
 
 
-def validate_product_name(product_name: str) -> bool:
-    pattern = r"^[0-9]{2}_[0-9]{3}"
-    return bool(re.match(pattern, product_name))
+
+class ProductValidator:
+    def __init__(self, product_name: str, material: str, x_dimension: str) -> None:
+        self.product_name = product_name
+        self.material = material
+        self.x_dimension = x_dimension
 
 
-def validate_material(material: str) -> str:
-    MATERIALS_TO_ORDER = ["NC11LV",
-                          "SLEIPNER",
-                          "HOLDAX",
-                          "VANADIS 4E"]
-    
-    MATERIALS_TO_PREPARE = ["S355",
-                            "S235",
-                            "C45"]
-    
-    if material in MATERIALS_TO_ORDER:
-        return "order"
-    elif material in MATERIALS_TO_PREPARE:
-        return "prepare"
-    
+    def validate_product_name(self) -> bool:
+        pattern = r"^[0-9]{2}_[0-9]{3}"
+        return bool(re.match(pattern, self.product_name))
 
-def validate_cylindricity(x: str) -> str:
-    # check if first dimension is circular (starts with Φ symbol)
-    if x[0] == chr(934):
-        if float(x[1:]) >= 50:
+
+    def validate_material(self) -> str:
+        MATERIALS_TO_ORDER = ["NC11LV",
+                            "SLEIPNER",
+                            "HOLDAX",
+                            "VANADIS 4E"]
+        
+        MATERIALS_TO_PREPARE = ["S355",
+                                "S235",
+                                "C45"]
+        
+        if self.material in MATERIALS_TO_ORDER:
+            return "order"
+        elif self.material in MATERIALS_TO_PREPARE:
             return "prepare"
-    return "ready"
+        
+
+    def validate_cylindricity(self) -> str:
+        # check if first dimension is circular (starts with Φ symbol)
+        if self.x_dimension[0] == chr(934):
+            if float(self.x_dimension[1:]) >= 50:
+                return "prepare"
+        return "ready"
+    
+
+    def validate_all(self):
+        return (self.validate_product_name(),
+                self.validate_material(),
+                self.validate_cylindricity()
+                )
+    
