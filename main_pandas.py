@@ -43,9 +43,9 @@ prepare_materials_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
 
 # pass values identical for every row
 client_name = input("Podaj numer klienta zamowienia:\n")
-finish_date = input("Podaj oczekiwany termin realizacji obrobki:\n")
-finish_preparation_date = input("Podaj oczekiwany termin realizacji przygotowania materialu:\n")
-ext_order_number = input("Podaj wewnetrzny numer zamowienia (format RRRR.MM.DD_[inicjaly]_[liczba porzadkowa]:\n)")
+finish_date = input("Podaj oczekiwany termin realizacji obrobki (DD.MM.RRRR):\n")
+finish_preparation_date = input("Podaj oczekiwany termin realizacji przygotowania materialu (DD.MM.RRRR):\n")
+ext_order_number = input("Podaj wewnetrzny numer zamowienia (format DD.MM.RRRR_[inicjaly]_[liczba porzadkowa]):\n")
 
 # iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
 for i in range(len(bom_csv)):
@@ -93,4 +93,4 @@ for i in range(len(bom_csv)):
             prodio_df.loc[len(prodio_df)] = prodio_line
 
 merged_df = pd.concat([prodio_df, prepare_materials_df], ignore_index=True, sort=False)
-merged_df.to_csv('generated_prodio_import.csv', sep=";")
+merged_df.to_csv('generated_prodio_import.csv', sep=";", index=False)
