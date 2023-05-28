@@ -32,10 +32,14 @@ class ProductValidator:
                                 "S235",
                                 "C45"]
         
-        if self.material in MATERIALS_TO_ORDER:
+        MATERIALS_TO_OMIT = ["LASER2D"]
+        
+        if self.material.upper() in MATERIALS_TO_ORDER:
             return "order"
-        elif self.material in MATERIALS_TO_PREPARE:
+        elif self.material.upper()  in MATERIALS_TO_PREPARE:
             return "prepare"
+        elif self.material.upper() in MATERIALS_TO_OMIT:
+            return "omit"
         
 
     def validate_cylindricity(self) -> str:
