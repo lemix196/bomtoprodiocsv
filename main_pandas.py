@@ -41,6 +41,12 @@ bom_csv = pd.read_csv("bom_temp.csv", skiprows=12)
 prodio_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
 prepare_materials_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
 
+# pass values identical for every row
+client_name = input("Podaj numer klienta zamowienia:\n")
+finish_date = input("Podaj oczekiwany termin realizacji obrobki:\n")
+finish_preparation_date = input("Podaj oczekiwany termin realizacji przygotowania materialu:\n")
+ext_order_number = input("Podaj wewnetrzny numer zamowienia (format RRRR.MM.DD_[inicjaly]_[liczba porzadkowa]:\n)")
+
 # iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
 for i in range(len(bom_csv)):
     # read single line with i index
@@ -67,9 +73,9 @@ for i in range(len(bom_csv)):
 
             # create pandas Series line for material preparation 
             prepare_material_prodio_line = pd.Series(index=PRODIO_IMPORT_HEADERS)
-            prepare_material_prodio_line["Klient"] = "NATS012"
-            prepare_material_prodio_line["Oczekiwany termin realizacji"] = "2023.05.25"
-            prepare_material_prodio_line["Zewn. nr zamówienia"] = "2023.05.27_GL_2"
+            prepare_material_prodio_line["Klient"] = client_name
+            prepare_material_prodio_line["Oczekiwany termin realizacji"] = finish_preparation_date
+            prepare_material_prodio_line["Zewn. nr zamówienia"] = ext_order_number + "P"
             prepare_material_prodio_line["Produkt"] = "PRZYGOTOWANIE MATERIAŁU"
             prepare_material_prodio_line["Sztuk"] = line["Ilość"]
             prepare_material_prodio_line["Uwagi dla wszystkich"] = remarks_for_everyone
@@ -77,9 +83,9 @@ for i in range(len(bom_csv)):
             prepare_materials_df.loc[len(prepare_materials_df)] = prepare_material_prodio_line
         else:
             prodio_line = pd.Series(index=PRODIO_IMPORT_HEADERS)
-            prodio_line["Klient"] = "NATS012"
-            prodio_line["Oczekiwany termin realizacji"] = "2023.05.30"
-            prodio_line["Zewn. nr zamówienia"] = "2023.05.27_GL_1"
+            prodio_line["Klient"] = client_name
+            prodio_line["Oczekiwany termin realizacji"] = finish_date
+            prodio_line["Zewn. nr zamówienia"] = ext_order_number
             prodio_line["Produkt"] = product_name
             prodio_line["Sztuk"] = line["Ilość"]
             prodio_line["Uwagi dla wszystkich"] = "A1"
