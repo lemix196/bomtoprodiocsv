@@ -25,3 +25,9 @@ def validate_material(material: str) -> str:
         return "prepare"
     
 
+def validate_cylindricity(x: str) -> str:
+    # check if first dimension is circular (starts with Φ symbol)
+    if x[0] == chr(934):
+        if float(x[1:]) >= 50:
+            return "prepare"
+    return "ready"
