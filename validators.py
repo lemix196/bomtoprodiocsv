@@ -41,14 +41,22 @@ class ProductValidator:
     def validate_cylindricity(self) -> str:
         # check if first dimension is circular (starts with Φ symbol)
         if self.x_dimension[0] == chr(934):
+            return True
+        return False
+    
+
+    def validate_cylindrical_procedure(self):
+            if not self.validate_cylindricity():
+                return None
             if float(self.x_dimension[1:]) >= 50:
                 return "prepare"
-        return "ready"
+            else:
+                return "ready"
     
 
     def validate_all(self):
         return (self.validate_product_name(),
                 self.validate_material(),
-                self.validate_cylindricity()
+                self.validate_cylindrical_procedure()
                 )
     
