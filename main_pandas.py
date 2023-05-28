@@ -60,7 +60,7 @@ for i in range(len(bom_csv)):
     if not is_product or plate_destined_for == "omit":
         continue
     else:
-        if (plate_destined_for == "prepare") or (cylindrical_procedure == "prepare"):
+        if (plate_destined_for == "prepare" and cylindrical_procedure != "ready") or (cylindrical_procedure == "prepare"):
             # concatenate data needed for field "Uwagi dla wszystkich"
             dimensions = "".join([str(s) for s in line[3:8]])
             remarks_for_everyone = material + " " + dimensions + " " + product_name
