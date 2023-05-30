@@ -2,6 +2,17 @@
 
 {% block body %}
 
-<p>I'm using a template.</p>
+<form>
+    <input type="file" class="file-input">
+    <label for="client-name" class="form-label">Numer klienta:</label>
+    <input type="text" class="text-input" id="client-name">
+    <label for="finish-date" class="form-label">Oczekiwany termin zakonczenia obrobki:</label>
+    <input type="date" class="date-input" id="finish-date">
+    <label for="prepare-date" class="form-label">Oczekiwany termin przygotowania materialow:</label>
+    <input type="date" class="date-input" id="prepare-date">
+    <label for="checkbox-input" class="form-label">PILNE:</label>
+    <input type="checkbox" class="checkbox-input" id="isUrgent">
+    <input type="submit" class="submit-input" value="Generuj CSV">
+</form>
 
 {% endblock body %}
