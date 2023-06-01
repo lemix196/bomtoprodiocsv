@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import prodiocsv as pcsv
 import pandas as pd
 
@@ -44,3 +44,13 @@ def home():
         return render_template('home.html')
     
     return render_template('home.html')
+
+
+
+@app.route("/static/")
+def send_static(path):
+    return send_from_directory("static", path)
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)

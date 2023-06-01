@@ -1,20 +1,28 @@
 {% extends 'base.html' %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
 {% endblock style %}
 
 {% block body %}
-
+<div class="bom-form">
 <form method="post" enctype="multipart/form-data">
-    <input type="file" class="file-input" name="file">
-    <label for="finish-date" class="form-label">Oczekiwany termin zakonczenia obrobki:</label>
-    <input type="date" class="date-input" name="finish-date">
-    <label for="prepare-date" class="form-label">Oczekiwany termin przygotowania materialow:</label>
-    <input type="date" class="date-input" name="prepare-date">
-    <label for="checkbox-input" class="form-label">PILNE:</label>
-    <input type="checkbox" class="checkbox-input" name="isUrgent">
+    <div class="form-field">
+        <input type="file" class="file-input" name="file">
+    </div>
+    <div class="form-field">
+        <label for="finish-date" class="form-label">Oczekiwany termin zakonczenia obrobki:</label>    
+        <input type="date" class="date-input" name="finish-date">
+    </div>
+    <div class="form-field">
+        <label for="prepare-date" class="form-label">Oczekiwany termin przygotowania materialow:</label>
+        <input type="date" class="date-input" name="prepare-date">        
+    </div>
+    <div class="form-field">
+        <label for="checkbox-input" class="form-label">PILNE:</label>
+        <input type="checkbox" class="checkbox-input" name="isUrgent">    
+    </div>
     <input type="submit" class="submit-input" value="Generuj CSV">
 </form>
-
+</div>
 {% endblock body %}
