@@ -2,16 +2,16 @@
 
 {% block body %}
 
-<form>
+<form method="post">
     <input type="file" class="file-input">
     <label for="client-name" class="form-label">Numer klienta:</label>
-    <input type="text" class="text-input" id="client-name">
+    <input type="text" class="text-input" name="client-name">
     <label for="finish-date" class="form-label">Oczekiwany termin zakonczenia obrobki:</label>
-    <input type="date" class="date-input" id="finish-date">
+    <input type="date" class="date-input" name="finish-date">
     <label for="prepare-date" class="form-label">Oczekiwany termin przygotowania materialow:</label>
-    <input type="date" class="date-input" id="prepare-date">
+    <input type="date" class="date-input" name="prepare-date">
     <label for="checkbox-input" class="form-label">PILNE:</label>
-    <input type="checkbox" class="checkbox-input" id="isUrgent">
+    <input type="checkbox" class="checkbox-input" name="isUrgent">
     <input type="submit" class="submit-input" value="Generuj CSV">
 </form>
 
