@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock style %}
+
 {% block body %}
 
 <form method="post" enctype="multipart/form-data">
