@@ -90,7 +90,7 @@ def write_validated_line(product:Product,
             prepare_material_prodio_line["Uwagi dla wszystkich"] = remarks_for_everyone
             prepare_material_prodio_line["Uwagi niewidoczne dla produkcji"] = ""
             # insert pandas Series created above into dataframe
-            prepare_dataframe.loc[len(prepare_materials_df)] = prepare_material_prodio_line
+            prepare_dataframe.loc[len(prepare_dataframe)] = prepare_material_prodio_line
 
         # create pandas Series line for product machining
         prodio_line = pd.Series(index=PRODIO_IMPORT_HEADERS)
@@ -102,7 +102,7 @@ def write_validated_line(product:Product,
         prodio_line["Uwagi dla wszystkich"] = "A1"
         prodio_line["Uwagi niewidoczne dla produkcji"] = product.material + "; PILNE"
         # insert pandas Series created above into dataframe
-        machine_dataframe.loc[len(prodio_df)] = prodio_line
+        machine_dataframe.loc[len(machine_dataframe)] = prodio_line
 
 
 if __name__ == "__main__":
