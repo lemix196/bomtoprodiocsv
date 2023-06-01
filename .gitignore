@@ -5,3 +5,6 @@ venv
 __pycache__
 *.csv#
 *.xls#
+node_modules
+package-lock.json
+package.json
