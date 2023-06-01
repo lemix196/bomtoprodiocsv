@@ -71,7 +71,8 @@ def write_validated_line(product:Product,
                          client_name,
                          ext_order_number,
                          prepare_finish_date,
-                         finish_date):
+                         finish_date,
+                         is_urgent=True):
     
     is_product, plate_destined_for, cylindrical_procedure = validators
     
@@ -100,7 +101,7 @@ def write_validated_line(product:Product,
         prodio_line["Produkt"] = product.name
         prodio_line["Sztuk"] = product.quantity
         prodio_line["Uwagi dla wszystkich"] = "A1"
-        prodio_line["Uwagi niewidoczne dla produkcji"] = product.material + "; PILNE"
+        prodio_line["Uwagi niewidoczne dla produkcji"] = product.material + "; PILNE" if is_urgent else product.material
         # insert pandas Series created above into dataframe
         machine_dataframe.loc[len(machine_dataframe)] = prodio_line
 

@@ -10,7 +10,7 @@ def home():
     if request.method == 'POST':
         finish_date = request.form["finish-date"]
         prepare_date = request.form["prepare-date"]
-        is_urgent = request.form.getlist("isUrgent")
+        is_urgent = bool(request.form.getlist("isUrgent"))
         file = request.files["file"]
 
 
@@ -20,8 +20,6 @@ def home():
         prepare_materials_df = pd.DataFrame(columns=pcsv.PRODIO_IMPORT_HEADERS)
         client_name = pcsv.get_client_name(file.filename)
         bom_data = pcsv.convert_xls_to_dataframe(file)
-        print(client_name)
-        print(bom_data)
 
         # iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
         for i in range(len(bom_data)):
@@ -36,7 +34,8 @@ def home():
                                 client_name=client_name,
                                 ext_order_number="nr_zamowienia",
                                 prepare_finish_date=prepare_date,
-                                finish_date=finish_date
+                                finish_date=finish_date,
+                                is_urgent=is_urgent
                                 )
 
         merged_df = pd.concat([machining_df, prepare_materials_df], ignore_index=True, sort=False)
