@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<form method="post">
+    <input type="file" class="file-input" name="file-path">
+    <label for="finish-date" class="form-label">Oczekiwany termin zakonczenia obrobki:</label>
+    <input type="date" class="date-input" name="finish-date">
+    <label for="prepare-date" class="form-label">Oczekiwany termin przygotowania materialow:</label>
+    <input type="date" class="date-input" name="prepare-date">
+    <label for="checkbox-input" class="form-label">PILNE:</label>
+    <input type="checkbox" class="checkbox-input" name="isUrgent">
+    <input type="submit" class="submit-input" value="Generuj CSV">
+</form>
+
+{% endblock body %}
