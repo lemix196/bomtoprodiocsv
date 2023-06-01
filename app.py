@@ -8,18 +8,20 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        filepath = request.form["file-path"]
         finish_date = request.form["finish-date"]
         prepare_date = request.form["prepare-date"]
         is_urgent = request.form.getlist("isUrgent")
-        print(is_urgent)
+        file = request.files["file"]
+
 
         ### CSV CREATION
     # init of empty DataFrame object to be filled with lines to export to Prodio
         machining_df = pd.DataFrame(columns=pcsv.PRODIO_IMPORT_HEADERS)
         prepare_materials_df = pd.DataFrame(columns=pcsv.PRODIO_IMPORT_HEADERS)
-        client_name = pcsv.get_client_name(filepath)
-        bom_data = pcsv.convert_xls_to_dataframe(filepath)
+        client_name = pcsv.get_client_name(file.filename)
+        bom_data = pcsv.convert_xls_to_dataframe(file)
+        print(client_name)
+        print(bom_data)
 
         # iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
         for i in range(len(bom_data)):

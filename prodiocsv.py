@@ -34,8 +34,8 @@ PRODIO_IMPORT_HEADERS = ['Klient',\
                          'Atrybut 3 (opcjonalnie)']
 
 
-def convert_xls_to_dataframe(path:str):
-    return pd.read_excel(path, sheet_name="Całość", skiprows=12, keep_default_na=False)
+def convert_xls_to_dataframe(file):
+    return pd.read_excel(file, sheet_name="Całość", skiprows=12, keep_default_na=False)
 
 
 def get_client_name(path):

@@ -2,8 +2,8 @@
 
 {% block body %}
 
-<form method="post">
-    <input type="file" class="file-input" name="file-path">
+<form method="post" enctype="multipart/form-data">
+    <input type="file" class="file-input" name="file">
     <label for="finish-date" class="form-label">Oczekiwany termin zakonczenia obrobki:</label>
     <input type="date" class="date-input" name="finish-date">
     <label for="prepare-date" class="form-label">Oczekiwany termin przygotowania materialow:</label>
