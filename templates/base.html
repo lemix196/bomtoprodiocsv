@@ -49,5 +49,17 @@
 
     {% block body %}
     {% endblock body %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var flashMessages = document.getElementsByClassName('alert-message');
+            Array.from(flashMessages).forEach(function(message) {
+                message.addEventListener('click', function() {
+                    message.style.display = 'none';
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>
