@@ -6,8 +6,12 @@
 
 {% block body %}
 <div class="bom-form">
+    <div class="form-header">
+        <h2>Eksport pliku BOM.XLS do PRODIO.CSV</h2>
+    </div>
 <form method="post" enctype="multipart/form-data">
     <div class="form-field">
+        <label for="file-input" class="form-label">Wybierz plik BOM.XLS do eksportu:</label>
         <input type="file" class="file-input" name="file">
     </div>
     <div class="form-field">
