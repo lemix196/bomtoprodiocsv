@@ -9,7 +9,7 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #009900;
+    background-color: #bee9be;
     color: black;
     border-radius: 10px;
     font-family: Geologica;
@@ -101,7 +101,7 @@ body {
 .submit-input {
     padding: 10px;
     width: 100%;
-    background-color: rgb(98, 62, 255);
+    background-color: #009900;
     color: white;
     border: none;
     border-radius: 0px 0px 10px 10px;
