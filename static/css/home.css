@@ -116,3 +116,28 @@ body {
     background-color: white;
     color: black;
 }
+
+
+.alert-message {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: left;
+    font-family: Geologica;
+}
+
+.alert-message li {
+    list-style-type: none;
+}
+
+.error {
+    background-color: rgb(226, 107, 107);
+}
+.alert {
+    background-color: rgb(222, 231, 90);
+}
+.success {
+    background-color: rgb(164, 253, 104);
+}

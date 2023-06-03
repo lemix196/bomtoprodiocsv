@@ -10,6 +10,43 @@
     <title>Konwersja BOM do CSV</title>
 </head>
 <body>
+    {% with errors = get_flashed_messages(with_categories=True, category_filter=['Error']) %}
+    {% if errors %}
+    <div class="alert-message error">
+        <ul>
+        {% for category, error in errors %}
+            <li>{{ category }}: {{ error }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% with alerts = get_flashed_messages(with_categories=True, category_filter=['Alert']) %}
+    {% if alerts %}
+    <div class="alert-message alert">
+        <ul>
+        {% for category, alert in alerts %}
+            <li>{{ alert }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% with successes = get_flashed_messages(with_categories=True, category_filter=['Success']) %}
+    {% if successes %}
+    <div class="alert-message success">
+        <ul>
+        {% for category, success in successes %}
+            <li>{{ success }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+
     {% block body %}
     {% endblock body %}
 </body>

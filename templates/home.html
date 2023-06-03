@@ -9,7 +9,7 @@
     <div class="form-header">
         <h2>Eksport pliku BOM.XLS do PRODIO.CSV</h2>
     </div>
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" action="{{ url_for('home') }}">
     <div class="form-field">
         <label for="file-input" class="form-label">Wybierz plik BOM.XLS do eksportu:</label>
         <input type="file" class="file-input" name="file">
@@ -29,4 +29,5 @@
     <input type="submit" class="submit-input" value="Generuj CSV">
 </form>
 </div>
+
 {% endblock body %}
