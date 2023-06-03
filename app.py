@@ -63,13 +63,6 @@ def home():
     
     return render_template('home.html')
 
-    
-
-
-@app.route("/static/")
-def send_static(path):
-    return send_from_directory("static", path)
-
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
