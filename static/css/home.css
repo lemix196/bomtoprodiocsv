@@ -2,6 +2,7 @@
 
 body {
     background-color: white;
+    margin: 0;
 }
 
 .bom-form {
@@ -120,16 +121,23 @@ body {
 
 .alert-message {
     z-index: 1;
-    position: absolute;
+    position: relative;
     left: 0;
     top: 0;
     width: 100%;
+    padding: 5px;
     text-align: left;
     font-family: Geologica;
+    cursor: pointer;
 }
 
 .alert-message li {
     list-style-type: none;
+    padding: 5px;
+}
+
+.alert-message ul {
+    margin: 0;
 }
 
 .error {
