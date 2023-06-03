@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, send_file
 import prodiocsv as pcsv
 import pandas as pd
 
@@ -39,9 +39,11 @@ def home():
                                 )
 
         merged_df = pd.concat([machining_df, prepare_materials_df], ignore_index=True, sort=False)
-        merged_df.to_csv('generated_prodio_import.csv', sep=";", index=False)
+        csv_filename = 'generated_prodio_import.csv'
+        merged_df.to_csv(csv_filename, sep=";", index=False)
         ### END OF CSV CREATION
-        return render_template('home.html')
+        
+        return send_file(csv_filename, as_attachment=True)
     
     return render_template('home.html')
 
