@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, send_from_directory, send_file
+from flask import Flask, render_template, request, send_from_directory, send_file, flash
 import prodiocsv as pcsv
 import pandas as pd
+import form_validators as fv
 
 app = Flask(__name__)
-
+app.secret_key = 'kkeeyy'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -12,6 +13,21 @@ def home():
         prepare_date = request.form["prepare-date"]
         is_urgent = bool(request.form.getlist("isUrgent"))
         file = request.files["file"]
+
+        # form validation
+        if fv.is_empty(file):
+            flash("Musisz wybrac plik do zaladowania.", 'Error')
+            return render_template('home.html')
+        
+        if not fv.is_file_format_correct(file.filename):
+            flash('Wybrany plik musi byc arkuszem Excel o formacie .xls.', 'Error')
+            return render_template('home.html')
+        
+        if fv.is_empty(finish_date):
+            flash('Plik wygenerowano bez daty zakonczenia obrobki', 'Alert')
+
+        if fv.is_empty(prepare_date):
+            flash('Plik wygenerowano bez daty przygotowania materialu', 'Alert')
 
 
         ### CSV CREATION
@@ -42,11 +58,12 @@ def home():
         csv_filename = 'generated_prodio_import.csv'
         merged_df.to_csv(csv_filename, sep=";", index=False)
         ### END OF CSV CREATION
-        
+        flash('Plik CSV zostal wygenerowany', 'Success')
         return send_file(csv_filename, as_attachment=True)
     
     return render_template('home.html')
 
+    
 
 
 @app.route("/static/")
