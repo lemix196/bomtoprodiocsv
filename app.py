@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, send_from_directory, send_file, flash
 import prodiocsv as pcsv
 import pandas as pd
-import form_validators as fv
+from form_validators import FormValidator
 
 app = Flask(__name__)
 app.secret_key = 'kkeeyy'
@@ -9,27 +9,17 @@ app.secret_key = 'kkeeyy'
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        finish_date = request.form["finish-date"]
-        prepare_date = request.form["prepare-date"]
-        is_urgent = bool(request.form.getlist("isUrgent"))
         file = request.files["file"]
+        prepare_date = request.form["prepare-date"]
+        finish_date = request.form["finish-date"]
+        is_urgent = bool(request.form.getlist("isUrgent"))
+
+        fv = FormValidator(file, file.filename, prepare_date, finish_date, is_urgent)
 
         # form validation
-        if fv.is_empty(file):
-            flash("Musisz wybrac plik do zaladowania.", 'Error')
-            return render_template('home.html')
-        
-        if not fv.is_file_format_correct(file.filename):
-            flash('Wybrany plik musi byc arkuszem Excel o formacie .xls.', 'Error')
-            return render_template('home.html')
-        
-        if fv.is_empty(finish_date):
-            flash('Plik wygenerowano bez daty zakonczenia obrobki', 'Alert')
-
-        if fv.is_empty(prepare_date):
-            flash('Plik wygenerowano bez daty przygotowania materialu', 'Alert')
-
-
+        if fv.validate_form() != None:
+            return fv.validate_form()
+            
         ### CSV CREATION
     # init of empty DataFrame object to be filled with lines to export to Prodio
         machining_df = pd.DataFrame(columns=pcsv.PRODIO_IMPORT_HEADERS)
