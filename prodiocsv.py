@@ -34,16 +34,16 @@ PRODIO_IMPORT_HEADERS = ['Klient',\
                          'Atrybut 3 (opcjonalnie)']
 
 
-def convert_xls_to_dataframe(file):
+def convert_xls_to_dataframe(file) -> pd.read_excel():
     return pd.read_excel(file, sheet_name="Całość", skiprows=12, keep_default_na=False)
 
 
-def get_client_name(path):
+def get_client_name(path: str) -> str:
      filename = os.path.split(path)
      return filename[1].split("_")[0]
 
 
-def validate_bom_line(product:Product):
+def validate_bom_line(product:Product) -> ProductValidator.validate_all():
     # read data needed for product validation
     product_name = product.name
     material = str(product.material)
@@ -58,7 +58,7 @@ def validate_bom_line(product:Product):
     return validators
 
 
-def concat_data_for_preparation(product:Product):
+def concat_data_for_preparation(product:Product) -> str:
     # concatenate data needed for field "Uwagi dla wszystkich"
     dimensions = "".join([str(s) for s in product.dimensions])
     return product.material + " " + dimensions + " " + product.name
@@ -107,29 +107,4 @@ def write_validated_line(product:Product,
 
 
 if __name__ == "__main__":
-    # init of empty DataFrame object to be filled with lines to export to Prodio
-    prodio_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
-    prepare_materials_df = pd.DataFrame(columns=PRODIO_IMPORT_HEADERS)
-
-    path = r"NABR009_OP20_BOM.xls"
-    client_name = get_client_name(path)
-    bom_data = convert_xls_to_dataframe(path)
-
-    # iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
-    for i in range(len(bom_data)):
-        # read single line with i index
-        line = bom_data.loc[i]
-        p = Product()
-        p.get_product_data(line)
-        write_validated_line(product=p,
-                            validators=validate_bom_line(p),
-                            prepare_dataframe=prepare_materials_df,
-                            machine_dataframe=prodio_df,
-                            client_name=client_name,
-                            ext_order_number="nr_zamowienia",
-                            prepare_finish_date="23.06.2023",
-                            finish_date="30.06.2023"
-                            )
-
-    merged_df = pd.concat([prodio_df, prepare_materials_df], ignore_index=True, sort=False)
-    merged_df.to_csv('generated_prodio_import.csv', sep=";", index=False)
+    pass

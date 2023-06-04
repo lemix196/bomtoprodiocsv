@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory, send_file, flash
+from flask import Flask, render_template, request, redirect, send_file, flash, url_for
 import prodiocsv as pcsv
 import pandas as pd
 from form_validators import FormValidator
@@ -49,9 +49,14 @@ def home():
         merged_df.to_csv(csv_filename, sep=";", index=False)
         ### END OF CSV CREATION
         flash('Plik CSV zostal wygenerowany', 'Success')
-        return send_file(csv_filename, as_attachment=True)
-    
+        return redirect(url_for('download', csv_filename=csv_filename))
+        
     return render_template('home.html')
+
+@app.route('/download/')
+def download():
+    csv_filename = request.args.get('csv_filename')
+    return send_file(csv_filename, as_attachment=True)
 
 
 if __name__ == "__main__":
