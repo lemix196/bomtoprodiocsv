@@ -13,6 +13,7 @@ def home():
         prepare_date = request.form["prepare-date"]
         finish_date = request.form["finish-date"]
         is_urgent = bool(request.form.getlist("isUrgent"))
+        literal = request.form["literal"]
 
         fv = FormValidator(file, file.filename, prepare_date, finish_date, is_urgent)
 
@@ -26,6 +27,7 @@ def home():
         prepare_materials_df = pd.DataFrame(columns=pcsv.PRODIO_IMPORT_HEADERS)
         client_name = pcsv.get_client_name(file.filename)
         bom_data = pcsv.convert_xls_to_dataframe(file)
+        order_number = pcsv.create_order_id(literal)
 
         # iteration through whole bom_csv file/DataFrame to pick data from it and swap to prodio csv
         for i in range(len(bom_data)):
@@ -38,7 +40,7 @@ def home():
                                 prepare_dataframe=prepare_materials_df,
                                 machine_dataframe=machining_df,
                                 client_name=client_name,
-                                ext_order_number="nr_zamowienia",
+                                ext_order_number=order_number,
                                 prepare_finish_date=prepare_date,
                                 finish_date=finish_date,
                                 is_urgent=is_urgent

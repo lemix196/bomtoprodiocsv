@@ -24,7 +24,13 @@
     </div>
     <div class="form-field">
         <label for="checkbox-input" class="form-label">PILNE:</label>
-        <input type="checkbox" class="checkbox-input" name="isUrgent">    
+        <input type="checkbox" class="checkbox-input" name="isUrgent">   
+        <label for="literal" class="form-label">Osoba wprowadzajaca:</label>
+        <select type="select" class="select-literals" name="literal">
+            <option value="GL">GL</option>     
+            <option value="TM">TM</option>     
+            <option value="MC">MC</option>   
+        </select>  
     </div>
     <input id="submit-form" type="submit" class="submit-input" value="Generuj CSV">
 </form>
