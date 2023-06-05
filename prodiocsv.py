@@ -45,7 +45,7 @@ def get_client_name(path: str) -> str:
      return filename[1].split("_")[0]
 
 
-def today_date_to_str():
+def today_date_to_str() -> str:
      now = dt.date.today()
      day = str(now.day) if now.day >= 10 else "0" + str(now.day)
      month = str(now.month) if now.month >= 10 else "0" + str(now.month)
@@ -123,10 +123,10 @@ def write_validated_line(product:Product,
                          validators:tuple,
                          prepare_dataframe:pd.DataFrame,
                          machine_dataframe:pd.DataFrame,
-                         client_name,
-                         ext_order_number,
-                         prepare_finish_date,
-                         finish_date,
+                         client_name: str,
+                         ext_order_number: str,
+                         prepare_finish_date: str,
+                         finish_date: str,
                          is_urgent=True):
     
     is_product, plate_destined_for, cylindrical_procedure = validators
