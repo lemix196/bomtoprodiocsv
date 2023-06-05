@@ -27,7 +27,7 @@ class FormValidator():
         else:
             return False
 
-    def validate_form(self) -> render_template():
+    def validate_form(self) -> render_template:
         if self.is_empty(self.file):
             flash("Musisz wybrac plik do zaladowania.", 'Error')
             return render_template('home.html')
