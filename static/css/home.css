@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica');
+
+body {
+    background-color: white;
+    margin: 0;
+}
+
+.bom-form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #bee9be;
+    color: black;
+    border-radius: 10px;
+    font-family: Geologica;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin: auto;
+
+    box-shadow: 0px 0px 2px 0px;
+}
+
+.form-header {
+    display: inline-block;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+    justify-content: center;
+    background-color: #000000;
+    color: white;
+}
+
+
+.form-field {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 7px;
+}
+
+.form-label {
+    display: inline-block;
+    justify-content: center;
+    width: 100%;
+    margin: 4px
+}
+
+.file-input::file-selector-button {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    margin: auto;
+    background-color: #000000;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    transition: background-color 0.4s, color 0.4s ;
+}
+
+.file-input::file-selector-button:hover {
+    background-color: orangered;
+}
+
+.file-input::file-selector-button:active {
+    background-color: white;
+    color: black;
+}
+
+
+.file-input {
+    display: flex;
+    width: 100%;
+    color: rgb(66, 66, 66);
+    text-align: center;
+}
+
+.date-input {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.4s background-color;
+}
+
+
+.date-input:hover {
+    background-color: orangered;
+}
+
+.date-input:focus {
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+.submit-input {
+    padding: 10px;
+    width: 100%;
+    background-color: #009900;
+    color: white;
+    border: none;
+    border-radius: 0px 0px 10px 10px;
+    transition: 0.4s background-color, color 0.4s;
+}
+
+.submit-input:hover {
+    background-color: rgb(248, 13, 13);
+}
+
+.submit-input:active {
+    background-color: white;
+    color: black;
+}
+
+
+.alert-message {
+    z-index: 1;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+    font-family: Geologica;
+    cursor: pointer;
+}
+
+.alert-message li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.alert-message ul {
+    margin: 0;
+}
+
+.error {
+    background-color: rgb(226, 107, 107);
+}
+.alert {
+    background-color: rgb(222, 231, 90);
+}
+.success {
+    background-color: rgb(164, 253, 104);
+}

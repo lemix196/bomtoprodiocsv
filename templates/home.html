@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
+{% endblock style %}
+
+{% block body %}
+<div class="bom-form">
+    <div class="form-header">
+        <h2>Eksport pliku BOM.XLS do PRODIO.CSV</h2>
+    </div>
+<form method="post" enctype="multipart/form-data" action="{{ url_for('home') }}" id="csv-form">
+    <div class="form-field">
+        <label for="file-input" class="form-label">Wybierz plik BOM.XLS do eksportu:</label>
+        <input type="file" class="file-input" name="file">
+    </div>
+    <div class="form-field">
+        <label for="finish-date" class="form-label">Oczekiwany termin zakonczenia obrobki:</label>    
+        <input type="date" class="date-input" name="finish-date">
+    </div>
+    <div class="form-field">
+        <label for="prepare-date" class="form-label">Oczekiwany termin przygotowania materialow:</label>
+        <input type="date" class="date-input" name="prepare-date">        
+    </div>
+    <div class="form-field">
+        <label for="checkbox-input" class="form-label">PILNE:</label>
+        <input type="checkbox" class="checkbox-input" name="isUrgent">   
+        <label for="literal" class="form-label">Osoba wprowadzajaca:</label>
+        <select type="select" class="select-literals" name="literal">
+            <option value="GL">GL</option>     
+            <option value="TM">TM</option>     
+            <option value="MC">MC</option>   
+        </select>  
+    </div>
+    <input id="submit-form" type="submit" class="submit-input" value="Generuj CSV">
+</form>
+</div>
+
+
+<script>
+    const reloadPage = () => {
+        location.reload();
+        console.log('Form submitted')
+    }
+
+    var form = document.getElementById('submit-form');
+    form.addEventListener('submit', reloadPage);
+
+</script>
+{% endblock body %}

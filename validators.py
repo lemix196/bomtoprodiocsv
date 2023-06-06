@@ -39,7 +39,7 @@ class ProductValidator:
         return False
     
 
-    def validate_cylindrical_procedure(self):
+    def validate_cylindrical_procedure(self) -> str:
             if not self.validate_cylindricity():
                 return None
             if float(self.x_dimension[1:]) >= 50:
